@@ -1,0 +1,7 @@
+This folder may contain three files:
+
+  1. samples.csv : including information about the samples.
+  
+  2. primers.csv: including information about the adapters.
+  
+  3. AmpliconRefSeqs.fna: including the reference sequences of the sequenced regions.
