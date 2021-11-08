@@ -42,18 +42,6 @@ if( any(is.na(idx)) )
 { cat("\nNo nucleotide reference sequence found for samples: ",
         paste(which(is.na(idx)),collapse=", "),"\n")
 } else cat("\nAll nucleotide reference sequences found.\n")
-
-###  Comprobar que hi hagi les RefSeqs d'aa
-aaRefSeqs <- as.character(
-              readAAStringSet(file.path(dataDir,"AmpliconAaRefSeqs.fna")))
-rspatt <- paste("HAV.",
-                primers$FW.tpos[samples$Primer.idx],".",
-                primers$RV.tpos[samples$Primer.idx],"$",sep="")
-idx <- sapply(rspatt,function(patt) grep(patt,names(aaRefSeqs))[1])
-if( any(is.na(idx)) )
-{ cat("\nNo amino acid reference sequence found for samples: ",
-        paste(which(is.na(idx)),collapse=", "),"\n")
-} else cat("\nAll amino acid reference sequences found.\n")
 		
 ###  Llista de fastq en directori raw
 flnms <- list.files(runDir)
