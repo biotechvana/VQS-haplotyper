@@ -12,8 +12,35 @@ The image above shows the workflow the user should follow to obtain the viral qu
 
   1. Check metadata: to verify primer descriptors and files for pools in run.
   2. Quality assesment: to analyze samples' quality.
-  3. QSPipeline: to obtain quasispecies present in the samples.
+  3. QSPipeline: to obtain quasispecies present in the samples after applying quality, similarity and abundance filters.
 
 ## Dependencies
 
+To run QSPipeline, several R libraries are required:
 
+  * [Biostrings](https://bioconductor.org/packages/release/bioc/html/Biostrings.html)
+  * [ShortRead](https://bioconductor.org/packages/release/bioc/html/ShortRead.html)
+  * [data.table](https://cran.r-project.org/web/packages/data.table/)
+  * [stringr](https://cran.r-project.org/web/packages/stringr/)
+  * [RColorBrewer](https://cran.r-project.org/web/packages/RColorBrewer/)
+  * [optparse](https://cran.r-project.org/web/packages/optparse/)
+
+FLASH of Illumina is required too, but it is provided in this repository.
+
+## Installation
+
+Clone the QSPipeline repository in directory of your choice:
+
+```
+git clone https://github.com/bsorianos/QSPipeline.git
+```
+
+Or download it directly from GitHub QSPipeline page.
+
+This repository includes:
+
+  * a folder called R which includes several scripts needed to run the pipeline.
+  * this README file
+  * the LICENSE file
+
+## Usage
