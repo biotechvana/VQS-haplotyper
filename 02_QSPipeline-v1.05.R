@@ -7,7 +7,7 @@ suppressMessages(library(optparse))
 
 proj.nm <- "VHIR38_CBM"
 
-source("HCV_nt_VHIR_pars.R")
+source("default_pars.R")
 
 option_list <- list(make_option(c("-p", "--pmm_mx"), action = "store", default = 3, type = "numeric", help = "Maximum number of mismatches in the specific primer [default %default]"),
 	make_option(c("-l", "--min_len"), action = "store", default = 200, type = "numeric", help = "Minimum length to consider a sequence [default %default]"),
