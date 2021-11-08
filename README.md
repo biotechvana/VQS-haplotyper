@@ -44,3 +44,5 @@ This repository includes:
   * the LICENSE file
 
 ## Usage
+
+https://github.com/alesssia/MAP#example
