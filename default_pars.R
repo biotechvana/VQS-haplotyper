@@ -29,38 +29,38 @@ aaDir <- "./aa"
 ###  Per splitByPrimers  ###
 
 ##  TRIM PRIMERS
-## Definim parametres per separació de reads:
-pmm.mx <- 3        ## Nombre màxim de mismatch en el primer específic
+## Definim parametres per separaciÃ³ de reads:
+pmm.mx <- 3        ## Nombre mÃ xim de mismatch en el primer especÃ­fic
 max.prdif <- pmm.mx
-min.len <- 200     ## Longitud mínima per considerar una seqüència
-###  Depèn que hi hagi adaptadors 454, MIDs i/o M13
+min.len <- 200     ## Longitud mÃ­nima per considerar una seqÃ¼Ã¨ncia
+###  DepÃ¨n que hi hagi adaptadors 454, MIDs i/o M13
 target.io <- 1   # 10   25   50
 target.in <- 30  # 55   55   80
 
 #-----------------------------------------------------------------------#
 
-## Definim paràmetres de filtrat de reads
-min.reads <- 1         ## Nombre mínim de reads per seqüència, post reparacions.
-max.Ns <- 2            ## Nombre màxim de Ns admisibles.
-max.diffs <- 99        ## Nombre màxim de diferències tolerat.
-max.gaps <- 3          ## Nombre màxim de gaps admisibles.
+## Definim parÃ metres de filtrat de reads
+min.reads <- 1         ## Nombre mÃ­nim de reads per seqÃ¼Ã¨ncia, post reparacions.
+max.Ns <- 2            ## Nombre mÃ xim de Ns admisibles.
+max.diffs <- 99        ## Nombre mÃ xim de diferÃ¨ncies tolerat.
+max.gaps <- 3          ## Nombre mÃ xim de gaps admisibles.
 ref.type <- "generic"  ## Un d'entre "generic" o "consensus"
 
 #-----------------------------------------------------------------------#
 
-## Definim paràmetres per la intersecció d'haplotips
+## Definim parÃ metres per la intersecciÃ³ d'haplotips
 
-###  Mètode de confrontació FW i RV
-###  'Sum'  pren la suma de reads d'haplotips comuns com a distribució
-###  'Intersect' pren la intersecció com a distribució
+###  MÃ¨tode de confrontaciÃ³ FW i RV
+###  'Sum'  pren la suma de reads d'haplotips comuns com a distribuciÃ³
+###  'Intersect' pren la intersecciÃ³ com a distribuciÃ³
 method <- "Sum"    ###  Un de c("Intersect","Sum")
-min.rd <-   1      ###  Si cal filtrat per mínim nombre de reads
-a.cut  <-  0.00    ###  Llindar d'abundància previ a la intersecció en %
-ni.thr <-   2      ###  Llindar d'abundància per salvar no comuns en %
+min.rd <-   1      ###  Si cal filtrat per mÃ­nim nombre de reads
+a.cut  <-  0.00    ###  Llindar d'abundÃ ncia previ a la intersecciÃ³ en %
+ni.thr <-   2      ###  Llindar d'abundÃ ncia per salvar no comuns en %
 
 #-----------------------------------------------------------------------#
 
-## Definim paràmetres per acceptar variants
+## Definim parÃ metres per acceptar variants
 
 var.thr <- 0.50   ###  Acceptar variants per sobre del 0.5%
 
