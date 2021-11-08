@@ -20,7 +20,7 @@ min.len <- 200
 min.ov <- 20     # Minimum overlap between R1 and R2
 max.ov <- 300    # Maximum overlap between R1 and R2
 err.lv <- 0.10   # Fraction of accepted mismatches in overlap 
-flash <- "/home/cperales/FLASH-1.2.11/flash"
+flash <- "./FLASH-1.2.11/flash"
 flash.opts <- paste("-m",min.ov,"-M",max.ov,"-x",err.lv)
 
 ###  Hi ha M13 + primer específic, hi poden haver MIDs també
