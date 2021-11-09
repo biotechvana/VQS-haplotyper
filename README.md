@@ -44,9 +44,26 @@ Or download it directly from GitHub QSPipeline page.
 
 This repository includes:
 
-  * a folder called R which includes several scripts needed to run the pipeline.
-  * this README file
-  * the LICENSE file
+  * a folder called FLASH-1.2.11, which includes FLASH of Illumina.
+  * a folder called R, which includes several scripts needed to run the pipeline.
+  * the data folder containing three files: samples.csv, primers.csv and AmpliconRefSeqs.fna.
+  * the export folder containing some pipeline results.
+  * a folder called filt, which includes filtered haplotypes.
+  * the flash folder containing the files resulting from FLASH.
+  * the flashFilt folder including filtered files by quality.
+  * a folder called join, which contains the results coming from intersecting haplotypes between FW and RV files.
+  * the nt.01 folder containing final haplotypes per region with an abundance filter of 0.1% by default.
+  * the nt folder containing final haplotypes per region with an abundance filter of 0.5% by default.
+  * a folder called reports including every report generated in each step of the pipeline.
+  * the results folder containing a summary file of each sample and a coverage boxplot by amplicon.
+  * the run folder containing the FASTQ files that are going to be analyzed.
+  * the trim folder containing fasta files after adapter trimming.
+  * the 00_CheckMetadata-RAVs-v1.17.R file.
+  * the 01_MiSeq_RAV_QA_Pipeline-v2.2.R file.
+  * the 02_QSPipeline-v1.06.R file.
+  * this README.md file.
+  * the LICENSE file.
+  * the default_pars.R file, which contains the default parameters used by this pipeline.
 
 ## Usage <a name="usage"></a>
 
