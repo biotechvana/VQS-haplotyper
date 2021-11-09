@@ -4,7 +4,12 @@ QSPipeline is a pipeline to detect viral quasispecies in NGS data. It is based i
 
 ## Table of contents
 
-## The QSPipeline workflow
+1. [The QSPipeline workflow](#workflow)
+2. [Dependencies](#dependencies)
+3. [Installation](#installation)
+4. [Usage](#usage)
+
+## The QSPipeline workflow <a name="workflow"></a>
 
 FIGURE
 
@@ -14,7 +19,7 @@ The image above shows the workflow the user should follow to obtain the viral qu
   2. Quality assesment: to analyze samples' quality.
   3. QSPipeline: to obtain quasispecies present in the samples after applying quality, similarity and abundance filters.
 
-## Dependencies
+## Dependencies <a name="dependencies"></a>
 
 To run QSPipeline, several R libraries are required:
 
@@ -27,7 +32,7 @@ To run QSPipeline, several R libraries are required:
 
 FLASH of Illumina is required too, but it is provided in this repository.
 
-## Installation
+## Installation <a name="installation"></a>
 
 Clone the QSPipeline repository in directory of your choice:
 
@@ -43,6 +48,6 @@ This repository includes:
   * this README file
   * the LICENSE file
 
-## Usage
+## Usage <a name="usage"></a>
 
 https://github.com/alesssia/MAP#example
