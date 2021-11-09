@@ -90,5 +90,3 @@ Follow these steps to execute the complete pipeline:
     * -s/--min_size: Value between 0 and 1, which multiplies sequence length, to select minimum length of sequences.
 
 To run these R scripts, you can execute them via terminal (for example, Rscript 02_QSPipeline-v1.06.R --max_gaps 50) or you can run them via RStudio (for example, system('Rscript 02_QSPipeline-v1.06.R --max_gaps 50').
-
-https://github.com/alesssia/MAP#example
