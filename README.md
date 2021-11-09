@@ -16,7 +16,9 @@ FIGURE
 The image above shows the workflow the user should follow to obtain the viral quasispecies present in its samples:
 
   1. Check metadata: to verify primer descriptors and files for pools in run.
+<!-- -->
   2. Quality assesment: to analyze samples' quality.
+<!-- -->
   3. QSPipeline: to obtain quasispecies present in the samples after applying quality, similarity and abundance filters.
 
 ## Dependencies <a name="dependencies"></a>
@@ -44,7 +46,7 @@ Or download it directly from GitHub QSPipeline page.
 
 This repository includes:
 
-  * a folder called FLASH-1.2.11, which includes FLASH of Illumina.
+  * a folder called FLASH-1.2.11, which includes FLASH of Illumina.<br />
   * a folder called R, which includes several scripts needed to run the pipeline.
   * the data folder containing three files: samples.csv, primers.csv and AmpliconRefSeqs.fna.
   * the export folder containing some pipeline results.
@@ -66,5 +68,27 @@ This repository includes:
   * the default_pars.R file, which contains the default parameters used by this pipeline.
 
 ## Usage <a name="usage"></a>
+
+Follow these steps to execute the complete pipeline:
+
+1. Run the 00_CheckMetadata-RAVs-v1.17.R file to verify all primer descriptors and files for pools.
+<!-- -->
+2. Run the 01_MiSeq_RAV_QA_Pipline-v2.2.R file to asses the quality of the R1 and R2 fastq files and filter reads by quality.
+<!-- -->
+3. Run the 02_QSPipeline-v1.06.R file to detect the quasispecies present in the samples. To configure this pipeline, it has the following options:
+
+    * -p/--pmm_mx: Maximum number of mismatches in the specific primer.
+    * -l/--min_len: Minimum length to consider a sequence.
+    * -m/--min_reads: Minimum number of reads by sequences after repair.
+    * -n/--max_ns: Maximum number of admissible Ns.
+    * -d/--max_diffs: Maximum number of tolerated differences between the haplotype and its reference.
+    * -g/--max_gaps: Maximum number of admissible gaps.
+    * -r/--ref_type: Reference type to filter reads. Choose between generic or consensus.
+    * -M/--method: Sum or Intersect. Sum takes the sum of the common haplotypes reads as a distribution, while Intersect takes the intersection as a distribution.
+    * -t/--var_thr: Accept variant with an abundance above this value.
+    * -a/--ab_thr: Second abundance filter for haplotypes.
+    * -s/--min_size: Value between 0 and 1, which multiplies sequence length, to select minimum length of sequences.
+
+To run these R scripts, you can execute them via terminal (for example, Rscript 02_QSPipeline-v1.06.R --max_gaps 50) or you can run them via RStudio (for example, system('Rscript 02_QSPipeline-v1.06.R --max_gaps 50').
 
 https://github.com/alesssia/MAP#example
