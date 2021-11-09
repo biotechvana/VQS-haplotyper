@@ -11,7 +11,7 @@ QSPipeline is a pipeline to detect viral quasispecies in NGS data. It is based i
 
 ## The QSPipeline workflow <a name="workflow"></a>
 
-![Alt text](https://user-images.githubusercontent.com/93382821/140949770-f4bad113-a259-4f95-ba30-ec21a0d8117f.jpeg?raw=true)
+<img src="https://user-images.githubusercontent.com/93382821/140949770-f4bad113-a259-4f95-ba30-ec21a0d8117f.jpeg?raw=true" alt="image" width="650"/>
 
 The image above shows the workflow the user should follow to obtain the viral quasispecies present in its samples:
 
