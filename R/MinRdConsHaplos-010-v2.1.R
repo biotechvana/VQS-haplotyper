@@ -3,7 +3,7 @@
 ########################################################
 
 library(Biostrings)
-source(file.path(codeDir,"seqanalfns.v4.5.R"))
+source(file.path(codeDir,"global.v4.5.R"))
 library(data.table)
 
 
@@ -54,7 +54,7 @@ filter.haplos <- function(in.flnm,out.flnm,pcnt=0.5,mnrd=NULL)
 }
 
 
-###  Llegim l'estructura de descripció de mostres
+###  Llegim l'estructura de descripciÃ³ de mostres
 ##################################################
 samples <- fread(file.path(dataDir,"samples.csv"), sep="auto", header=T,
                     stringsAsFactors=F)
