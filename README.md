@@ -32,7 +32,7 @@ To run QSPipeline, several R libraries are required:
   * [RColorBrewer](https://cran.r-project.org/web/packages/RColorBrewer/)
   * [optparse](https://cran.r-project.org/web/packages/optparse/)
 
-FLASH of Illumina is required too, but it is provided in this repository.
+[FLASH](https://ccb.jhu.edu/software/FLASH/) of Illumina is required too, but it is provided in this repository.
 
 ## Installation <a name="installation"></a>
 
