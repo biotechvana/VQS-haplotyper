@@ -3,7 +3,7 @@
 ########################################################
 
 library(Biostrings)
-source(file.path(codeDir,"seqanalfns.v4.5.R"))
+source(file.path(codeDir,"global.v4.5.R"))
 
 ###  Read amplicon aligned sequences 
 ######################################  
@@ -50,7 +50,7 @@ filter.haplos <- function(lst,out.flnm,pcnt=0.5)
 }
 
 
-###  Llegim l'estructura de descripció de mostres
+###  Llegim l'estructura de descripciÃ³ de mostres
 ##################################################
 samples <- read.table(file.path(dataDir,"samples.csv"), sep="\t", header=T,
                     stringsAsFactors=F)
