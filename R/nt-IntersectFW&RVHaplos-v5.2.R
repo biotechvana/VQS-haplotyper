@@ -237,7 +237,7 @@ options(width=80)
 library(RColorBrewer)
 cls <- brewer.pal(8,"Dark2")
 
-source(file.path(codeDir,"seqanalfns.v4.5.R"))
+source(file.path(codeDir,"global.v4.5.R"))
 
 ###  Llegim l'estructura de descripció de mostres
 ##################################################
