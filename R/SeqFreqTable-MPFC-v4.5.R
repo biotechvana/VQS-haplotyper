@@ -12,7 +12,7 @@
 ###  Es genera un informe sobre els resultats obtesos.
 ##############################################################################
 
-source("./R/seqanalfns.v4.5.R")
+source("./R/global.v4.5.R")
 library(data.table)
 
 ###  Formatar sencers emplenant amb 0 per l'esquerra
