@@ -1,15 +1,15 @@
-# QSPipeline
+# VQS-haplotyper
 
-QSPipeline is a pipeline to detect viral quasispecies in NGS data. It is based in R and can be run via RStudio or via command-line script. It is compatible with Linux, Mac OS and Windows.
+VQS-haplotyper (Virus Quasispecies haplotyper) is a pipeline to detect viral quasispecies in NGS data. It is based in R and can be run via RStudio or via command-line script. It is compatible with Linux, Mac OS and Windows.
 
 ## Table of contents
 
-1. [The QSPipeline workflow](#workflow)
+1. [The VQS-haplotyper workflow](#workflow)
 2. [Dependencies](#dependencies)
 3. [Installation](#installation)
 4. [Usage](#usage)
 
-## The QSPipeline workflow <a name="workflow"></a>
+## The VQS-haplotyper workflow <a name="workflow"></a>
 
 <img src="https://user-images.githubusercontent.com/93382821/140949770-f4bad113-a259-4f95-ba30-ec21a0d8117f.jpeg?raw=true" alt="image" width="650"/>
 
@@ -19,11 +19,11 @@ The image above shows the workflow the user should follow to obtain the viral qu
 <!-- -->
   2. Quality assesment: to analyze samples' quality.
 <!-- -->
-  3. QSPipeline: to obtain quasispecies present in the samples after applying quality, similarity and abundance filters.
+  3. VQS-haplotyper: to obtain quasispecies present in the samples after applying quality, similarity and abundance filters.
 
 ## Dependencies <a name="dependencies"></a>
 
-To run QSPipeline, several R libraries are required:
+To run VQS-haplotyper, several R libraries are required:
 
   * [Biostrings](https://bioconductor.org/packages/release/bioc/html/Biostrings.html)
   * [ShortRead](https://bioconductor.org/packages/release/bioc/html/ShortRead.html)
@@ -36,13 +36,13 @@ To run QSPipeline, several R libraries are required:
 
 ## Installation <a name="installation"></a>
 
-Clone the QSPipeline repository in directory of your choice:
+Clone the VQS-haplotyper repository in directory of your choice:
 
 ```
-git clone https://github.com/bsorianos/QSPipeline.git
+git clone https://github.com/bsorianos/VQS-haplotyper.git
 ```
 
-Or download it directly from GitHub QSPipeline page.
+Or download it directly from GitHub VQS-haplotyper page.
 
 This repository includes:
 
@@ -62,7 +62,7 @@ This repository includes:
   * the trim folder containing fasta files after adapter trimming.
   * the 00_CheckMetadata-RAVs-v1.17.R file.
   * the 01_MiSeq_RAV_QA_Pipeline-v2.2.R file.
-  * the 02_QSPipeline-v1.06.R file.
+  * the 02_VQS-haplotyper-v1.06.R file.
   * this README.md file.
   * the LICENSE file.
   * the default_pars.R file, which contains the default parameters used by this pipeline.
@@ -75,7 +75,7 @@ Follow these steps to execute the complete pipeline:
 <!-- -->
 2. Run the 01_MiSeq_RAV_QA_Pipline-v2.2.R file to asses the quality of the R1 and R2 fastq files and filter reads by quality.
 <!-- -->
-3. Run the 02_QSPipeline-v1.06.R file to detect the quasispecies present in the samples. To configure this pipeline, it has the following options:
+3. Run the 02_VQS-haplotyper-v1.06.R file to detect the quasispecies present in the samples. To configure this pipeline, it has the following options:
 
     * -p/--pmm_mx: Maximum number of mismatches in the specific primer.
     * -l/--min_len: Minimum length to consider a sequence.
@@ -89,4 +89,4 @@ Follow these steps to execute the complete pipeline:
     * -a/--ab_thr: Second abundance filter for haplotypes.
     * -s/--min_size: Value between 0 and 1, which multiplies sequence length, to select minimum length of sequences.
 
-To run these R scripts, you can execute them via terminal (for example, Rscript 02_QSPipeline-v1.06.R --max_gaps 50) or you can run them via RStudio (for example, system('Rscript 02_QSPipeline-v1.06.R --max_gaps 50').
+To run these R scripts, you can execute them via terminal (for example, Rscript 02_VQS-haplotyper-v1.06.R --max_gaps 50) or you can run them via RStudio (for example, system('Rscript 02_VQS-haplotyper-v1.06.R --max_gaps 50').
