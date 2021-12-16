@@ -253,19 +253,19 @@ CorrectMaster <- function(bseqs,nr,RefSeq=NULL)
     return( list(bseqs=bseqs, nr=nr, mseq=bseqs[1]) )
   
   ##  Alinear màster respecte la seq de referència
-  psa <- pairwiseAlignment(pattern=bseqs[1],subject=RefSeq)
-  mseq <- as.character(aligned(psa))[1]
+  #psa <- pairwiseAlignment(pattern=bseqs[1],subject=RefSeq)
+  #mseq <- as.character(aligned(psa))[1]
   
   ###  Corregir Ns i gaps en la màster per la RefSeq
-  lt1 <- strsplit(mseq,split="")[[1]]
-  idx <- c(which(lt1=="-"),which(lt1=="N"))
-  if(length(idx))
-  { cat("\nPositions corrected on the master:\n")
-    print(idx)
-    lt2 <- strsplit(RefSeq,split="")[[1]]
-    lt1[idx] <- lt2[idx]
-    bseqs[1] <- paste(lt1,collapse="")
-  }
+  #lt1 <- strsplit(mseq,split="")[[1]]
+  #idx <- c(which(lt1=="-"),which(lt1=="N"))
+  #if(length(idx))
+  #{ cat("\nPositions corrected on the master:\n")
+    #print(idx)
+    #lt2 <- strsplit(RefSeq,split="")[[1]]
+    #lt1[idx] <- lt2[idx]
+    #bseqs[1] <- paste(lt1,collapse="")
+  #}
   list(bseqs=bseqs, nr=nr, mseq=bseqs[1])
 }
 
