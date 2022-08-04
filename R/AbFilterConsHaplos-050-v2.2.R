@@ -1,0 +1,155 @@
+########################################################
+###     FILTER CONSENSUS HAPLOTYPES BY ABUNDANCE     ###
+########################################################
+
+library(Biostrings)
+library(data.table)
+source(file.path(codeDir,"seqanalfns.v4.5.R"))
+
+###  Read amplicon aligned sequences 
+######################################  
+read.ampl.seqs <- function(flnm,mnr=2)
+{
+  seqs <- as.character(readDNAStringSet(flnm))
+  IDstr <- names(seqs)
+  n <- length(IDstr)
+  nms <- character(length=n)
+  sts <- matrix(0,nrow=n,ncol=2)
+  colnames(sts) <- c("nseqs","pct1")
+  for(j in 1:n)
+  { strs <- strsplit(IDstr[j],split="\\|")[[1]]
+    nms[j] <- strs[1]
+    sts[j,] <- as.numeric(strs[2:3])
+  }
+  IDs <- data.frame(ID=nms,sts,stringsAsFactors=FALSE)
+  nall <- nrow(IDs)
+  tnr <- sum(IDs$nseqs)
+  ###  Filter by minimum reads by haplotype
+  flags <- IDs$nseqs >= mnr
+  return(list(IDs=IDs[flags,],seqs=seqs[flags],nall=nall,tnr=tnr))
+}
+
+###  Select haplos by a given reads threshold
+###  Save selected haplos to fasta file
+#################################################
+filter.haplos <- function(lst,out.flnm,pcnt=0.5)
+{ mnr <- 1
+  tnr <- sum(lst$ID$nseqs)
+  fl <- rep(TRUE,length(lst$seqs))
+  if(!is.null(pcnt))
+  {  mnrd <- round(lst$tnr*pcnt/100)
+     fl <- lst$IDs$nseqs >= mnrd
+  }
+  if(sum(fl)==0) return()
+  apc <- round(lst$ID$nseqs[fl]/sum(lst$ID$nseqs[fl])*100,2)
+  nms <- paste(lst$IDs$ID[fl],lst$ID$nseqs[fl],apc,sep="|")
+  seqs <- lst$seqs[fl];  
+  names(seqs) <- nms
+  writeXStringSet(DNAStringSet(seqs),out.flnm)
+  list(df=data.frame(ID=lst$IDs$ID[fl],reads=lst$ID$nseqs[fl],Pctg=apc),
+       seqs=seqs,tnr=tnr)
+}
+
+
+###  Llegim l'estructura de descripció de mostres
+##################################################
+samples <- fread(file.path(dataDir,"samples.csv"), sep="auto", header=T,
+                    stringsAsFactors=F)
+primers <- fread(file.path(dataDir,"primers.csv"), sep="auto", header=T,
+                    stringsAsFactors=F)
+
+##  Llegim la taula de fitxers a tractar
+##########################################
+load(file=file.path(repDir,"SplittedReadsFileTable.RData"))
+FlTbl <- FlTbl[ FlTbl$Str=="fw", ]
+nms.fw <- FlTbl$File.Name
+
+###  Data
+in.files <- FlTbl$File.Name
+in.files <- sub(".PrFW.",".",nms.fw)
+in.files <- file.path(joinDir,in.files)
+out.files <- sub(".PrFW.",".CH05.",nms.fw)
+out.files <- file.path(ntDir,out.files)
+
+log.cuts <- seq(-5,-2,0.1)
+rare.w <- matrix(0,nrow=length(in.files),ncol=length(log.cuts))
+rownames(rare.w) <- paste(FlTbl$Pat.ID,FlTbl$Ampl.Nm,sep=".")
+Tnr <- integer(length(in.files))
+Tnh <- integer(length(in.files))
+names(Tnh) <- names(Tnr) <- rownames(rare.w)
+
+cnr <- integer(length(in.files))
+fnr <- integer(length(in.files))
+nh <- integer(length(in.files))
+
+sink(file=file.path(repDir,"FltrConsHaplos.50-rprt.txt"))
+cat("\n   Filtering consensus haplotypes by abundance")
+cat("\n=================================================\n")
+cat("\n  Min percentage:",var.thr,"   min reads:",min.reads)
+cat("\n\nContents by output file:\n\n")
+
+###  Loop over fasta files
+for(i in 1:length(in.files))
+{ if( !file.exists(in.files[i]) ) next
+  print(out.files[i])
+
+  lst <- read.ampl.seqs(in.files[i],min.reads)
+  frq <- lst$ID$nseqs/sum(lst$ID$nseqs)
+  Tnr[i] <- sum(lst$ID$nseqs)
+  Tnh[i] <- length(lst$ID$nseqs)
+  rare.w[i,] <- sapply(log.cuts,function(lct) sum(frq[log10(frq)<=lct]))
+
+  lr <- filter.haplos(lst,out.files[i],var.thr)
+  df <- lr$df
+  cat("\nHaplotypes:",nrow(df),"   Reads:",sum(df$reads),"\n\n")
+  print(df)
+  nh[i] <- nrow(df)
+  cnr[i] <- lr$tnr
+  fnr[i] <- sum(df$reads)
+
+  ##  Report point mutations
+  if(length(lr$seqs)>1)
+  { pr.idx <- FlTbl$Pr.ID[i]
+    off <- primers$FW.tpos[pr.idx]-1
+    muts <- SummaryMuts.w(lr$seqs,lr$df$reads,off)
+    cat("\nObserved point mutations:\n")
+    print(muts)
+  }
+  cat("\n--------------------------------------------------\n\n")
+}
+fdf <- data.frame(FlTbl[,c(2,3,5)],c.reads=cnr,f.reads=fnr,
+                  f.haplo=nh,pct=round(fnr/cnr*100,2))
+fdf <- fdf[cnr>0,]
+cat("Cutting at ",var.thr,"%\n\n",sep="")
+cat("Final yield by sample:\n\n")
+print(fdf)
+cat("\n\nGlobally:\n\n")
+tfdf <- as.vector(apply(fdf[,4:5],2,sum))
+gbl.res <- data.frame(iReads=tfdf[1],fReads=tfdf[2],
+             pct2=round(tfdf[2]/tfdf[1]*100,2))
+print(gbl.res)
+cat("\n==================================================\n")
+sink()
+
+save(rare.w,log.cuts,Tnh,Tnr,file=file.path(repDir,"RareHplWeight.RData"))
+
+txt.flnm <- "FltrConsHaplos.50-SumRprt.txt"
+sink(file=file.path(repDir,txt.flnm))
+
+###  Filter and save
+cat("\n   Filtering consensus haplotypes by abundance")
+cat("\n==================================================\n")
+cat("\n  Min percentage:",var.thr,"   min reads:",min.reads,"\n\n")
+cat("Final yield by sample:\n\n")
+print(fdf)
+cat("\n\nGlobally:\n\n")
+tfdf <- as.vector(apply(fdf[,4:5],2,sum))
+gbl.res <- data.frame(iReads=tfdf[1],fReads=tfdf[2],
+             pct2=round(tfdf[2]/tfdf[1]*100,2))
+print(gbl.res)
+cat("\n==================================================\n")
+sink()
+
+file.copy( file.path(repDir,txt.flnm), file.path(exportDir,txt.flnm),
+           overwrite=TRUE )
+
