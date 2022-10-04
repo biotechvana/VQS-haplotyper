@@ -50,11 +50,11 @@ filter.haplos <- function(lst,out.flnm,pcnt=0.5)
 }
 
 
-###  Llegim l'estructura de descripció de mostres
+###  Llegim l'estructura de descripciÃ³ de mostres
 ##################################################
-samples <- read.table(file.path(dataDir,"samples.csv"), sep="\t", header=T,
+samples <- fread(file.path(dataDir,"samples.csv"), sep="auto", header=T,
                     stringsAsFactors=F)
-primers <- read.table(file.path(dataDir,"primers.csv"), sep="\t", header=T,
+primers <- fread(file.path(dataDir,"primers.csv"), sep="auto", header=T,
                     stringsAsFactors=F)
 
 ##  Llegim la taula de fitxers a tractar
