@@ -1,6 +1,6 @@
 # VQS-haplotyper
 
-VQS-haplotyper (Virus Quasispecies haplotyper) is a pipeline to detect viral quasispecies in NGS data. It is based in R and can be run via RStudio or via command-line script. It is compatible with Linux, Mac OS and Windows.
+VQS-haplotyper (Virus Quasispecies haplotyper) is a pipeline to detect viral quasispecies in NGS data. It is based in R and can be run via RStudio or via command-line. It is compatible with Linux, Mac OS and Windows.
 
 ## Table of contents
 
