@@ -173,7 +173,7 @@ options(width=80)
 library(RColorBrewer)
 cls <- brewer.pal(8,"Dark2")
 
-source(file.path(codeDir,"global.v4.5.R"))
+source(file.path(codeDir,"global.v4.6.R"))
 
 ###  Lectura de la estructura de las descripciones de las muestras
 ###################################################################
