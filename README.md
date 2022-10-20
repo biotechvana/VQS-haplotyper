@@ -74,19 +74,24 @@ Follow these steps to execute the complete pipeline:
 1. Run the 00_CheckMetadata-RAVs-v1.17.R file to verify all primer descriptors and files for pools.
 <!-- -->
 2. Run the 01_MiSeq_RAV_QA_Pipline-v2.2.R file to asses the quality of the R1 and R2 fastq files and filter reads by quality.
+    
+    * --min_len: Minimum length to consider a sequence.
+    * --min_ov: Minimum overlap between R1 and R2 in FLASH.
+    * --max_ov: Maximum overlap between R1 and R2 in FLASH.
+    * --err_lv: Fraction of accepted mismatches in overlap in FLASH.
+    * --thrQ30: Maximum percentage of bases below Q30 accepted by read
 <!-- -->
 3. Run the 02_VQS-haplotyper-v1.06.R file to detect the quasispecies present in the samples. To configure this pipeline, it has the following options:
 
-    * -p/--pmm_mx: Maximum number of mismatches in the specific primer.
-    * -l/--min_len: Minimum length to consider a sequence.
-    * -m/--min_reads: Minimum number of reads by sequences after repair.
-    * -n/--max_ns: Maximum number of admissible Ns.
-    * -d/--max_diffs: Maximum number of tolerated differences between the haplotype and its reference.
-    * -g/--max_gaps: Maximum number of admissible gaps.
-    * -r/--ref_type: Reference type to filter reads. Choose between generic or consensus.
-    * -M/--method: Sum or Intersect. Sum takes the sum of the common haplotypes reads as a distribution, while Intersect takes the intersection as a distribution.
-    * -t/--var_thr: Accept variant with an abundance above this value.
-    * -a/--ab_thr: Second abundance filter for haplotypes.
-    * -s/--min_size: Value between 0 and 1, which multiplies sequence length, to select minimum length of sequences.
+    * --pmm_mx: Maximum number of mismatches in the specific primer.
+    * --min_reads: Minimum number of reads by sequences after repair.
+    * --max_ns: Maximum number of admissible Ns.
+    * --max_diffs: Maximum number of tolerated differences between the haplotype and its reference.
+    * --max_gaps: Maximum number of admissible gaps.
+    * --ref_type: Reference type to filter reads. Choose between generic or consensus.
+    * --method: Sum or Intersect. Sum takes the sum of the common haplotypes reads as a distribution, while Intersect takes the intersection as a distribution.
+    * --var_thr: Accept variant with an abundance above this value.
+    * --ab_thr: Second abundance filter for haplotypes.
+    * --min_size: Value between 0 and 1, which multiplies sequence length, to select minimum length of sequences.
 
-To run these R scripts, you can execute them via terminal (for example, Rscript 02_VQS-haplotyper-v1.06.R --max_gaps 50) or you can run them via RStudio (for example, system('Rscript 02_VQS-haplotyper-v1.06.R --max_gaps 50').
+To run these R scripts, you can execute them via terminal (for example, Rscript 02_VQS-haplotyper-v1.06.R --max_gaps 60) or you can run them via RStudio (for example, system('Rscript 02_VQS-haplotyper-v1.06.R --max_gaps 60').
