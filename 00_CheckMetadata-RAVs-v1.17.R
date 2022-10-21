@@ -54,7 +54,7 @@ if(length(flnms))
   parts <- parts[,-c(3,5)]
   colnames(parts) <- c("PoolID","SmplID","Read")
 
-  ###  Verificar que hi hagi un fastq R1 i R2 per cada pool en samples
+  ###  Verificar que haya un fastq R1 y R2 por cada pool en samples
   R1.IDs <- parts[parts[,3]=="R1","PoolID"]
   if( ! all(pools %in% R1.IDs) )
   { idx <- which(!(pools %in% R1.IDs)) 
