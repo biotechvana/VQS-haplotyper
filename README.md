@@ -90,6 +90,9 @@ Follow these steps to execute the complete pipeline:
     * --max_gaps: Maximum number of admissible gaps.
     * --ref_type: Reference type to filter reads. Choose between generic or consensus.
     * --method: Sum or Intersect. Sum takes the sum of the common haplotypes reads as a distribution, while Intersect takes the intersection as a distribution.
+    * --min_rd: Filter haplotypes by a minimum number of reads before intersection step.
+    * --a_cut: Filter haplotypes by abundance before intersection step (in percentage).
+    * --ni_thr: Save haplotypes with a specific abundance or below (in percentage).
     * --var_thr: Accept variant with an abundance above this value.
     * --ab_thr: Second abundance filter for haplotypes.
     * --min_size: Value between 0 and 1, which multiplies sequence length, to select minimum length of sequences.
