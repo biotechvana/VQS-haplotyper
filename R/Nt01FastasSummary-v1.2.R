@@ -80,7 +80,7 @@ fl.patt <- "\\.fna$"
 
 flnms <- list.files(path=nt01Dir,patt=fl.patt)
 parts <- t(sapply(flnms,function(str) strsplit(str,split="\\.")[[1]]))
-anms <- parts[,4]
+anms <- parts[,2]
 snms <- parts[,1]
 
 n <- length(flnms)
