@@ -90,7 +90,7 @@ pools <- unique(samples$Pool.Nm)
 ###  Lectura de las descripciones de los adaptadores
 primers <- fread(file.path(dataDir,"primers.csv"), sep="auto", header=T,
                       stringsAsFactors=F)
-###  Longitud del amplicón mayor en cada pool
+###  Longitud del amplicÃ³n mayor en cada pool
 max.len.in.pool <- function(p)
 { idx <- which(samples$Pool.Nm==p)
   if(length(idx)==0) return(0)
@@ -110,8 +110,8 @@ if(is.vector(parts))
 colnames(parts) <- c("PatID","SmplID")
 
 ###  Ficheros R1 y R2 origen
-R1.flnms <- paste(snms,"_L001_R1_001.fastq.gz",sep="")
-R2.flnms <- paste(snms,"_L001_R2_001.fastq.gz",sep="")
+R1.flnms <- paste(snms,"_L001_R1_001.fastq",sep="")
+R2.flnms <- paste(snms,"_L001_R2_001.fastq",sep="")
 
 ###  Sincronizar
 pln <- pln[parts[,"PatID"]]
