@@ -25,6 +25,8 @@ flashDir <- "./flash"
 flashFiltDir <- "./flashFilt"
 repDir <- "./reports"
 
+args <- parse_args(OptionParser(option_list = option_list))
+
 min.len <- args$min_len   # Minimum length to consider a sequence
 min.ov <- args$min_ov   # Minimum overlap between R1 and R2
 max.ov <- args$max_ov   # Maximum overlap between R1 and R2
