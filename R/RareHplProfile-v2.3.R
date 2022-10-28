@@ -103,7 +103,7 @@ for (i in 1:length(m[,1])) {
     merged[,1:ncol(merged)] = apply(merged[,1:ncol(merged)], 2, function(x) as.numeric(as.character(x)))
     colnames(merged) <- gsub("\\.[x|y]","",colnames(merged))
     merged[is.na(merged)] <- 0
-    addition <- sapply(unique(colnames(merged)), function(x) rowSums(merged[, colnames(merged)==x, drop=FALSE]))
+    addition <- t(apply(merged,1, function(x) tapply(x,colnames(merged),sum)))
   }
 }
 
