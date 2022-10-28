@@ -26,8 +26,7 @@ PopsAlgnHist <- function(IDsA,seqsA,IDsB,seqsB)
   names(nA) <- seqsA
   nB <- IDsB$nseqs
   names(nB) <- seqsB
-  nms <- c(seqsA,seqsB)    # todos: A + B, elimina las secuencias duplicadas
-  nms <- nms[!duplicated(nms)]
+  nms <- union(seqsA,seqsB)    # todos: A + B, elimina las secuencias duplicadas
   nb <- length(nms)
   pA <- integer(nb)
   idx <- which(nms %in% seqsA) # los de A en todos
