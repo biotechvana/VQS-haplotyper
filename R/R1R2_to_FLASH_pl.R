@@ -48,7 +48,7 @@ flash.res <- df.res
 save(flash.res,file=file.path(repDir,"FLASH_table.RData"))
 
 pdf.flnm <- file.path(repDir,"FLASH_barplot.pdf")
-pdf(pdf.flnm,paper="a4",width=6,height=10)
+pdf(pdf.flnm,paper="a4",width=10,height=10)
 par(mfrow=c(2,1))
 
 library(RColorBrewer)
