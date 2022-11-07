@@ -10,7 +10,6 @@ library(ShortRead)
 suppressMessages(library(optparse))
 
 option_list <- list(
-	make_option("--min_len", action = "store", default = 200, type = "numeric", help = "Minimum length to consider a sequence [default %default]"),
 	make_option("--min_ov", action = "store", default = 20, type = "numeric", help = "Minimum overlap between R1 and R2 in FLASH [default %default]"),
 	make_option("--max_ov", action = "store", default = 300, type = "numeric", help = "Maximum overlap between R1 and R2 in FLASH [default %dfault]"),
 	make_option("--err_lv", action = "store", default = 0.10, type = "numeric", help = "Fraction of accepted mismatches in overlap in FLASH [default %default]"),
@@ -27,7 +26,6 @@ repDir <- "./reports"
 
 args <- parse_args(OptionParser(option_list = option_list))
 
-min.len <- args$min_len   # Minimum length to consider a sequence
 min.ov <- args$min_ov   # Minimum overlap between R1 and R2
 max.ov <- args$max_ov   # Maximum overlap between R1 and R2
 err.lv <- args$err_lv   # Fraction of accepted mismatches in overlap
