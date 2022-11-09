@@ -117,7 +117,7 @@ for(i in 1:length(in.files))
       print(muts)
     }
   cat("\n--------------------------------------------------\n\n")
-}
+}}
 fdf <- data.frame(FlTbl[,c(2,3,5)],c.reads=cnr,f.reads=fnr,
                   f.haplo=nh,pct=round(fnr/cnr*100,2))
 fdf <- fdf[cnr>0,]
