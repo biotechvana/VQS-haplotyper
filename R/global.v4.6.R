@@ -107,7 +107,37 @@ SummaryMuts.w <- function(seqs,w,off=0, RefSeq)
   data.frame(res)
 }
 
+###  Function to get point mutation sited between an
+###    haplotype and its reference sequence
+mutations <- function(RefSeq, seq, off = 0, reads) {
+  RefSeq.vec <- unlist(strsplit(RefSeq, ""))
+  seq.vec <- unlist(strsplit(seq, ""))
+  mut <- (1:length(RefSeq.vec))[RefSeq.vec != seq.vec]
+  res <- data.frame()
+  for (i in mut) {
+    if (seq.vec[mut] == "A") {
+      res <- cbind(pos=mut+off, RefSeq.vec[mut], reads, 0, 0, 0, 0, 100, 0, 0, 0, 0)
+    } else if (seq.vec[mut] == "C") {
+      res <- cbind(pos=mut+off, RefSeq.vec[mut], 0, reads, 0, 0, 0, 0, 100, 0, 0, 0)
+    } else if (seq.vec[mut] == "G") {
+      res <- cbind(pos=mut+off, RefSeq.vec[mut], 0, 0, reads, 0, 0, 0, 0, 100, 0, 0)
+    } else if (seq.vec[mut] == "T") {
+      res <- cbind(pos=mut+off, RefSeq.vec[mut], 0, 0, 0, reads, 0, 0, 0, 0, 100, 0)
+    } else if (seq.vec[mut] == "-") {
+      res <- cbind(pos=mut+off, RefSeq.vec[mut], 0, 0, 0, 0, reads, 0, 0, 0, 0, 100)
+    }
+     
+  }
+  if (nrow(res) != 0) {
+    rownames(res) <- 1:nrow(res)
+    colnames(res) <- c("pos","ancestral.allele",paste("f",nuc.nms,sep= ""),
+                     paste("p",nuc.nms,sep= ""))
+  }
+  
+  data.frame(res)
+}
 
+                  
 ###  Segregating sites: Number of sites with mutations
 ###    (independent of sequence weights)
 SegSites <- function(seqs)
