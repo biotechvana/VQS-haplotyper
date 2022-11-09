@@ -118,7 +118,15 @@ for(i in 1:length(in.files))
     muts <- SummaryMuts.w(lr$seqs,lr$df$reads,off,RefSeqs[samples$Primer.idx][i][[1]])
     cat("\nObserved point mutations:\n")
     print(muts)
-  }
+  } else if(length(lr$seqs) == 1)
+  {
+    pr.idx <- FlTbl$Pr.ID[i]
+    off <- primers$FW.tpos[pr.idx]-1
+    muts <- mutations(RefSeqs[samples$Primer.idx][i][[1]], lr$seqs, off, lr$df$reads)
+    if (nrow(muts) != 0) {
+      cat("\nObserved point mutations:\n")
+      print(muts)
+    }
   cat("\n--------------------------------------------------\n\n")
 }
 fdf <- data.frame(FlTbl[,c(2,3,5)],c.reads=cnr,f.reads=fnr,
