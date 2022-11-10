@@ -19,7 +19,7 @@ The image above shows the workflow the user should follow to obtain the viral qu
 <!-- -->
   2. Quality assesment: to analyze samples' quality.
 <!-- -->
-  3. VQS-haplotyper: to obtain quasispecies present in the samples after applying quality, similarity and abundance filters.
+  3. VQS-haplotyper: to obtain quasispecies present in samples after applying quality, similarity and abundance filters.
 
 ## Dependencies <a name="dependencies"></a>
 
