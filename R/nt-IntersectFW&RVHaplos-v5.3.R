@@ -326,7 +326,8 @@ for(i in 1:n)
 
    ###  Report point mutations
    if(length(lst$bseqs)>1)
-   { muts <- SummaryMuts.w(lst$bseqs,lst$nr,off,RefSeqs[pr.idx][[1]])
+   { refseq.idx <- which(grepl(FlTbl$Ampl.Nm[i], names(RefSeqs)))
+     muts <- SummaryMuts.w(lst$bseqs,lst$nr,off,RefSeqs[refseq.idx][[1]])
      cat("\nObserved point mutations:\n")
      print(muts)
      cat("\n")
