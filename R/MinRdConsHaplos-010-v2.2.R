@@ -104,7 +104,8 @@ for(i in 1:length(in.files))
   if(length(lr$seqs)>1)
   { pr.idx <- FlTbl$Pr.ID[i]
     off <- primers$FW.tpos[pr.idx]-1
-    muts <- SummaryMuts.w(lr$seqs,lr$df$reads,off,RefSeqs[pr.idx][[1]])
+    refseq.idx <- which(grepl(FlTbl$Ampl.Nm[i], names(RefSeqs)))
+    muts <- SummaryMuts.w(lr$seqs,lr$df$reads,off,RefSeqs[refseq.idx][[1]])
     cat("\nObserved point mutations:\n")
     print(muts)
   } else if(length(lr$seqs) == 1)
